@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<div id="content">
-			<div id="room">
+			<div id="room" class="scroll">
 				<div id="room-list"></div>
 				<div id="message"></div>
 			</div>
@@ -36,9 +36,19 @@
 			var newElement = $("<div></div>").text(message.text);
 			$("#message").append(newElement);
 		});
-		$("#send-message").focus();
+		socket.on("ChangeNameResult", function(newName){
+			var newElement = $("<div></div>").text(newName.newName);
+			$("#message").append(newElement);
+		});
 		$("#send-button").click(function(){
 			processUserInput(charApp, socket);
 		});
+		window.onkeydown = function(e){
+			var ev = e || window.event;
+			if(ev.keyCode==13){
+				$("#send-button").focus();
+				$("#send-button").trigger("click");
+			}
+		}
 	});
 </script>
