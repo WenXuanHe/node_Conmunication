@@ -12,9 +12,11 @@ var processUserInput = function(chatApp, socket){
 	var message = $("#send-massenge").val();
 	var systemMessage;
 	if(message.charAt(0)!=="/"){///作为信息发送
-		chatApp.sendMessage($("#room").text(), message);
+		chatApp.sendMessage("房间1", message);
 		$("#message").append(divEscapedContentElemen(message));
 		////$("#message").scrollTop($("#message").prop('scrollHeight'));
+	}else{ ////以/开头作为命令输入
+		chatApp.changeName(message.split('/')[1]);
 	}
 	$("#send-massenge").val('');
 }
