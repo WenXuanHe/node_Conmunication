@@ -18,6 +18,7 @@ var processUserInput = function(chatApp, socket){
 	}else{ ////以/开头作为命令输入
 		chatApp.changeName(message.split('/')[1]);
 	}
+	
 	$("#send-massenge").val('');
 }
 
