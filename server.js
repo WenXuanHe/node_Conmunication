@@ -10,6 +10,7 @@ function send404(response){
 	response.writeHead(404, {'Content-Type':'text/plain'});
 	response.write("404:this page is not fund");
 	response.end();
+	
 }
 
 /////发送文件
