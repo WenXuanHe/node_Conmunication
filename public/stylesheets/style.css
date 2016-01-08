@@ -15,14 +15,25 @@ a{
 	background-color: #ddd;
 	margin-bottom: 1em;
     height: 400px;
-	
 }
-#massages{
-	width: 690px;
-	height: 300px;
+#message{
+	width: 783px;
 	overflow: auto;
 	background-color: #eee;
 	margin-bottom: 1em;
 	margin-right: 10px;
 }
 .scroll{overflow: scroll}
+ul{
+	height:20px;
+}
+ul li{
+	float: left;
+    list-style-type: none;
+    padding: 10px 10px;
+    background: white;
+    font-weight: bold;
+}
+.current{
+	color: blue;
+}

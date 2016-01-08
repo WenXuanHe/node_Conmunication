@@ -13,3 +13,17 @@ Chat.prototype.sendMessage = function(roomName, text){
 Chat.prototype.changeName = function(newName){
 	this.socket.emit("changeName", newName);
 }
+
+Chat.prototype.createRoom = function(newRoomName){
+	this.socket.emit("createRoom", {
+		newRoomName:newRoomName,
+		oldRoom:$('.current').text()
+	});
+}
+
+Chat.prototype.joinRoom = function(RoomName){
+	this.socket.emit("joinRoom", {
+		RoomName:RoomName,
+		oldRoom:$('.current').text()
+	});
+}

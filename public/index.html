@@ -8,7 +8,11 @@
 	<body>
 		<div id="content">
 			<div id="room" class="scroll">
-				<div id="room-list"></div>
+				<div id="room-list">
+					<ul id="ul">
+						
+					</ul>
+				</div>
 				<div id="message"></div>
 			</div>
 			<form action="" id="send-from">
@@ -38,6 +42,21 @@
 		});
 		socket.on("ChangeNameResult", function(newName){
 			var newElement = $("<div></div>").text(newName.newName);
+			$("#message").append(newElement);
+		});
+		socket.on("joinResult", function(joinResult){
+			var newElement = $("<div></div>").text(joinResult.currentRoom);
+			var text="";
+			$("#ul").empty();
+			for(var i =0; i < joinResult.allRoom.length; i++){
+				if(joinResult.allRoom[i] == joinResult.currentRoom){
+					text += "<li class='current'>" + joinResult.allRoom[i] + "</li>";
+				}else{
+					text += "<li>"+joinResult.allRoom[i] + "</li>";
+				}
+				
+			}
+			$("#ul").append(text);
 			$("#message").append(newElement);
 		});
 		$("#send-button").click(function(){
