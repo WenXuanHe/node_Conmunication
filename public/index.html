@@ -46,17 +46,6 @@
 		});
 		socket.on("joinResult", function(joinResult){
 			var newElement = $("<div></div>").text(joinResult.currentRoom);
-			var text="";
-			$("#ul").empty();
-			for(var i =0; i < joinResult.allRoom.length; i++){
-				if(joinResult.allRoom[i] == joinResult.currentRoom){
-					text += "<li class='current'>" + joinResult.allRoom[i] + "</li>";
-				}else{
-					text += "<li>"+joinResult.allRoom[i] + "</li>";
-				}
-				
-			}
-			$("#ul").append(text);
 			$("#message").append(newElement);
 		});
 		$("#send-button").click(function(){
@@ -68,6 +57,21 @@
 				$("#send-button").focus();
 				$("#send-button").trigger("click");
 			}
-		}
+		};
+		window.setInterval(function(){
+			socket.emit("room");
+		}, 1000);
+		socket.on("room", function(room){
+			$("#ul").empty();
+			var text="";
+			for(var i =0; i < room.room.length; i++){
+				if(room.room[i] == room.currentRoom){
+					text += "<li class='current'>" + room.room[i] + "</li>";
+				}else{
+					text += "<li>"+room.room[i] + "</li>";
+				}
+			}
+			$("#ul").append(text);
+		});
 	});
 </script>
